@@ -1,0 +1,27 @@
+{
+    "name": "convert-lookbook-theme",
+    "version": "1.0.0",
+    "private": true,
+    "description": "Shopify Horizon theme with Lookbook feature",
+    "engines": {
+        "node": ">=20.10.0"
+    },
+    "scripts": {
+        "dev": "shopify theme dev --environment development",
+        "pull": "shopify theme pull",
+        "push": "shopify theme push",
+        "push:unpublished": "shopify theme push --unpublished",
+        "check": "shopify theme check",
+        "lint": "shopify theme check --fail-level error"
+    },
+    "devDependencies": {
+        "@shopify/cli": "^3.94.3",
+        "@shopify/theme": "^3.58.2"
+    },
+    "main": "index.js",
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "commonjs"
+}
+

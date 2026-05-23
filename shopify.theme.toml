@@ -1,0 +1,5 @@
+[environments.development]
+store = "cnv-tm.myshopify.com"
+password = "shptka_dde41823f3b169102abf18982b69972a"
+theme = "162958409963"
+allow-live = true
