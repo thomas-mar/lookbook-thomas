@@ -1,0 +1,16 @@
+# Node
+node_modules/
+npm-debug.log*
+.DS_Store
+
+# Shopify CLI
+.shopify/
+*.log
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+
+*.toml
