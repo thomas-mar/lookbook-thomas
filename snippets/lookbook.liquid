@@ -1,0 +1,100 @@
+{%- doc -%}
+  Renders a lookbook.
+
+  @param {string} [title] - Lookbook title
+  @param {object} [image] - Lookbook image
+  @param {string} [description] - Lookbook description
+  @param {object} [product_handles] - Product handles in the lookbook
+  @param {object} [products] - Product references in the lookbook
+{%- enddoc -%}
+
+{% liquid
+  if product_handles != blank
+    assign lookbook_handles = product_handles
+  elsif products != blank
+    assign lookbook_handles = products | map: 'handle'
+  endif
+%}
+
+<script
+  src="{{ 'lookbook.js' | asset_url }}"
+  type="module"
+></script>
+
+<look-book
+  class="lookbook-container"
+  product-handles='{{ lookbook_handles | json | escape }}'
+  data-country="{{ localization.country.iso_code }}"
+  data-language="{{ localization.language.iso_code | upcase }}"
+>
+
+  <div class="lookbook-media">
+    {%- if title != blank -%}
+      <h3 class="lookbook-title">{{ title }}</h3>
+    {%- endif -%}
+  
+    {%- if image != blank -%}
+      <div class="lookbook-image">
+        {% render 'image', image: image %}
+      </div>
+    {%- endif -%}
+  
+    {%- if description != blank -%}
+      <div class="lookbook-description">{{ description }}</div>
+    {%- endif -%}
+  </div>
+  
+
+  <div class="lookbook-products"></div>
+</look-book>
+
+{% stylesheet %}
+
+.lookbook-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.lookbook-container .lookbook-media,
+.lookbook-container .lookbook-products {
+  width: 100%;
+  text-align: center;
+}
+
+.lookbook-container .lookbook-title{
+  text-align: center;
+}
+
+.lookbook-container .lookbook-description{
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+
+.lookbook-container .lookbook-products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+.lookbook-container .lookbook-product-card {
+  flex: 0 0 240px;
+}
+
+.lookbook-container .lookbook-product-card img {
+  aspect-ratio: 2/3;
+  object-fit: contain;
+  background: #FFF;
+  margin-bottom: 1rem;
+}
+
+
+
+@media(max-width: 749px){
+  .lookbook-container .lookbook-media,
+  .lookbook-container .lookbook-products {
+    width: 100%;
+  }
+}
+{% endstylesheet %}

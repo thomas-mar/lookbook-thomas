@@ -1,0 +1,122 @@
+{% liquid
+  assign selected_lookbook = section.settings.lookbook
+  assign lookbook = blank
+  assign lookbook_available = false
+  assign lookbook_entries = shop.metaobjects.lookbook.values
+
+  if selected_lookbook == blank and product
+    for lookbook_entry in lookbook_entries
+      for handle in lookbook_entry.product_handles.value
+        assign lookup_handle = handle
+        assign product_handle = product.handle 
+        if lookup_handle == product_handle
+          assign lookbook = lookbook_entry
+          assign lookbook_available = true
+          break
+        endif
+      endfor
+
+      if lookbook_available
+        break
+      endif
+    endfor
+  else
+  assign lookbook = shop.metaobjects['lookbook'][selected_lookbook]
+  assign lookbook_available = true
+
+  endif
+%}
+
+
+{%- if lookbook != blank and lookbook_available -%}
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div
+  class="section section--{{ section.settings.section_width }} spacing-style {% if section.settings.color_scheme != blank %}color-{{ section.settings.color_scheme }}{% endif %}"
+  style="{% render 'spacing-padding', settings: section.settings %}"
+>
+  {% capture lookbook_description %}
+    {{ lookbook.description | metafield_tag }}
+  {% endcapture %}
+  {% render 'lookbook',
+    title: lookbook.title.value,
+    image: lookbook.image.value,
+    description: lookbook_description,
+    product_handles: lookbook.product_handles.value
+  %}
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Lookbook",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:settings.width",
+      "options": [
+        {
+          "value": "page-width",
+          "label": "t:options.page"
+        },
+        {
+          "value": "full-width",
+          "label": "t:options.full"
+        }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Select Lookbook",
+    },
+    {
+      "type": "metaobject",
+      "id": "lookbook",
+      "label": "Select Lookbook",
+      "metaobject_type": "lookbook",
+      "info": "Manual override to select a lookbook to display",
+    }
+
+  ],
+  "presets": [
+    {
+      "name": "Lookbook",
+      "category": "t:categories.layout",
+    }
+  ]
+}
+{% endschema %}

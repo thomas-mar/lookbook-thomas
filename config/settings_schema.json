@@ -57,6 +57,16 @@
     ]
   },
   {
+    "name": "Storefront",
+    "settings" : [
+      {
+        "type": "text",
+        "id": "storefront_access_token",
+        "label": "Storefront Access Token"
+      }
+    ]
+  },
+  {
     "name": "t:names.colors",
     "settings": [
       {
