@@ -14,3 +14,4 @@ npm-debug.log*
 
 
 *.toml
+shopify.theme.toml

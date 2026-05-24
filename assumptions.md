@@ -1,6 +1,6 @@
 #LOOKBOOK SECTION
 
-Convert Digital Technical Assessment to build a native Shopify Lookbook feature. Built on the Horizon theme, using metaobjects for content modelling and using the Storefront API for runtime product data retrival. Support for the store Australia (AUD) and Japan (JPY) markets.
+Technical Assessment to build a native Shopify Lookbook feature. Built on the Horizon theme, using metaobjects for content modelling and using the Storefront API for runtime product data retrival. Support for the store Australia (AUD) and Japan (JPY) markets.
 
 
 ## ASSUMPTIONS/DESCIONS
