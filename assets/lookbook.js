@@ -6,6 +6,10 @@ class Lookbook extends HTMLElement {
     this.getProducts();
   }
 
+  /* 
+    Fetches products from graphQL being passed productHandles. 
+    GraphQl uses inContext to ensure correct market values are returned.
+  */
 
   async getProducts() {
     try {
@@ -74,6 +78,8 @@ class Lookbook extends HTMLElement {
     }
   }
 
+
+    /* Renders a simple product card from shopify graphQL results to target DOM */
 
   async renderProducts(products){
     const container = this.querySelector('.lookbook-products');
