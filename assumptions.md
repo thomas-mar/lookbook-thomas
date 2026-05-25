@@ -1,4 +1,4 @@
-#LOOKBOOK SECTION
+# LOOKBOOK SECTION
 
 Technical Assessment to build a native Shopify Lookbook feature. Built on the Horizon theme, using metaobjects for content modelling and using the Storefront API for runtime product data retrival. Support for the store Australia (AUD) and Japan (JPY) markets.
 
@@ -27,7 +27,7 @@ Assumed three fields for simplicity and demonstration of data retrival from meta
 Two section templates one limited for use template Product and other disabled on products.
 
 
-###PDP
+### PDP
 By default, lookbook section uses product's handle to perform a reverse lookup for a lookbook metaobject containing current product exists. If it exists it performs a storefront API request via graphQL to retrieve all products from the lookbook entry.
 
 Option to manually override section with specific lookbook. 
